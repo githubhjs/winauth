@@ -1,6 +1,6 @@
 # WinAuth CLI
 
-`winauth-cli` is a GUI-free, AnyCPU command-line authenticator for Mono on Linux and macOS. It supports TOTP and HOTP accounts used by Google, Microsoft, Okta, Guild Wars, Battle.net, Trion, Steam and other RFC-compatible services through Base32 secrets or standard `otpauth://` URIs.
+`winauth-cli` is a GUI-free, AnyCPU command-line authenticator for Mono on Linux and macOS. It supports TOTP, HOTP, and Steam Guard accounts used by Google, Microsoft, Okta, Guild Wars, Battle.net, Trion, Steam and other services through Base32 secrets or standard `otpauth://` URIs.
 
 ## Build and run
 
@@ -17,17 +17,22 @@ The default vault is `~/.config/winauth/winauth.xml`. Use `--file` to select ano
 
 ```sh
 mono WinAuth.Cli/bin/Release/winauth-cli.exe add --name email --issuer Example --secret JBSWY3DPEHPK3PXP
+mono WinAuth.Cli/bin/Release/winauth-cli.exe add --type steam --name steam --secret JBSWY3DPEHPK3PXP
 mono WinAuth.Cli/bin/Release/winauth-cli.exe import --uri 'otpauth://totp/Example:email?secret=JBSWY3DPEHPK3PXP&issuer=Example'
 mono WinAuth.Cli/bin/Release/winauth-cli.exe list
 mono WinAuth.Cli/bin/Release/winauth-cli.exe code email
 ```
+
+Steam Guard is detected from `--type steam` or from `otpauth://` entries whose
+issuer/name is `Steam`. It returns Valve's 5-character alphanumeric code, not a
+normal numeric 5-digit TOTP code.
 
 `show` deliberately prints secret material. Redirect it to a protected file and avoid terminal history when appropriate. Hardware-backed YubiKey encryption, desktop notifications, clipboard access, hotkeys, and automatic online account enrollment are desktop/Windows integration features and are intentionally not performed by this headless client; provisioned secrets from all providers remain usable.
 
 ## Automated tests
 
 The basic integration suite covers the published RFC 4226 HOTP vectors, vault
-mutations, `otpauth://` import, TOTP shape, and encrypted-vault password
+mutations, `otpauth://` import, TOTP shape, Steam Guard code generation, and encrypted-vault password
 handling. After building, run it from the repository root:
 
 ```sh

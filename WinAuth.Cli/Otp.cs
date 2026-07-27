@@ -4,6 +4,8 @@ using System.Text;
 
 namespace WinAuth.Cli {
   internal static class Otp {
+    const string SteamAlphabet = "23456789BCDFGHJKMNPQRTVWXY";
+
     internal static byte[] Base32(string value) {
       value = value.Trim().TrimEnd('=').Replace(" ", "").ToUpperInvariant();
       const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
@@ -18,8 +20,22 @@ namespace WinAuth.Cli {
       using (HMAC h = CreateHmac(e.Algorithm, Base32(e.Secret))) {
         hash = h.ComputeHash(msg);
       }
-      int o = hash[hash.Length - 1] & 15; int binary = ((hash[o]&127)<<24)|(hash[o+1]<<16)|(hash[o+2]<<8)|hash[o+3];
+      int binary = Truncate(hash);
+      if (e.Kind == "steam") return SteamCode(binary);
       string code = (binary % (int)Math.Pow(10, e.Digits)).ToString(new string('0', e.Digits)); if (e.Kind == "hotp") e.Counter++; return code;
+    }
+    static int Truncate(byte[] hash) {
+      int o = hash[hash.Length - 1] & 15;
+      return ((hash[o]&127)<<24)|(hash[o+1]<<16)|(hash[o+2]<<8)|hash[o+3];
+    }
+    static string SteamCode(int binary) {
+      uint value = (uint)binary;
+      StringBuilder code = new StringBuilder();
+      for (int i = 0; i < 5; i++) {
+        code.Append(SteamAlphabet[(int)(value % SteamAlphabet.Length)]);
+        value /= (uint)SteamAlphabet.Length;
+      }
+      return code.ToString();
     }
     static HMAC CreateHmac(string algorithm, byte[] key) {
       if (algorithm == "SHA256") return new HMACSHA256(key);
