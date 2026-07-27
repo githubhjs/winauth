@@ -132,7 +132,7 @@ All trademarks are recognised, including but not limited to:
 
 WinAuth was written by Colin Mackie. Copyright (C) 2010-2017.
 
-Bitcoin donations can be sent to `1C4bMkMATViiWYsmJSDUx2MruWM785C36Y`
+Donations: <https://ko-fi.com/huangjs>
 
 ----
 
