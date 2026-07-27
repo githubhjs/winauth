@@ -1,4 +1,39 @@
-# Windows Authenticator
+# winauth-running-on-all-OS.cli
+
+Cross-platform command-line WinAuth fork for running exported authenticator secrets on Linux,
+macOS, and Windows through Mono, without the original Windows GUI.
+
+The `WinAuth.Cli` release is the maintained target in this fork. It imports standard
+`otpauth://` text exports, supports normal TOTP/HOTP plus Steam Guard's 5-character code format,
+and stores entries in a local XML vault. The original WinAuth Windows GUI source is retained below
+for provenance and compatibility reference.
+
+Latest CLI release:
+
+<https://github.com/githubhjs/winauth-running-on-all-OS.cli/releases/latest>
+
+Download `winauth-cli-mono.zip`, extract it, and run:
+
+```sh
+./winauth-cli --help
+./winauth-cli import --uri 'otpauth://totp/Example:email?secret=JBSWY3DPEHPK3PXP&issuer=Example'
+./winauth-cli add --type steam --name steam --secret JBSWY3DPEHPK3PXP
+./winauth-cli code steam
+```
+
+On Linux/macOS, install Mono runtime first. On Ubuntu:
+
+```sh
+sudo apt-get install -y mono-runtime
+```
+
+On macOS with Homebrew:
+
+```sh
+brew install mono
+```
+
+## Original Windows Authenticator
 
 *WinAuth is a portable, open-source Authenticator for Windows that provides counter or time-based RFC 6238 authenticators and common implementations, such as the Google Authenticator. WinAuth can be used with many Bitcoin trading websites as well as games, supporting Battle.net (World of Warcraft, Hearthstone, Heroes of the Storm, Diablo), Guild Wars 2, Glyph (Rift and ArcheAge), WildStar, RuneScape, SWTOR and Steam.*
 
