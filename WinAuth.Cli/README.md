@@ -35,7 +35,9 @@ bash WinAuth.Cli/tests/cli-tests.sh
 ```
 
 GitHub Actions builds the project and runs this suite for every push and pull
-request.
+request. The workflow opts into GitHub's Node.js 24 action runtime and uses the
+Node.js 24 releases of the official checkout and artifact actions; this avoids
+the Node.js 20 deprecation warning shown by newer hosted runners.
 
 ## Binary releases
 

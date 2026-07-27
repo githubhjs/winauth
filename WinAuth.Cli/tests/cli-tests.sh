@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Keep CI failures actionable: GitHub's log will show the exact command and
+# assertion that failed instead of only reporting an exit code.
+if [[ "${CI:-}" == "true" ]]; then
+  set -x
+fi
+
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 CLI="$ROOT/WinAuth.Cli/bin/Release/winauth-cli.exe"
 TMP="$(mktemp -d)"
