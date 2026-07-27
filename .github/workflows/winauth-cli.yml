@@ -1,0 +1,61 @@
+name: WinAuth CLI
+
+env:
+  # GitHub-hosted runners switched their JavaScript action runtime to Node 24.
+  # Declaring it explicitly also keeps older runner images from emitting the
+  # Node 20 deprecation warning.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
+on:
+  push:
+    branches: ['**']
+    tags: ['cli-v*']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install Mono
+        run: sudo apt-get update && sudo apt-get install --yes mono-devel
+      - name: Build
+        run: |
+          set -euxo pipefail
+          mono --version
+          xbuild /verbosity:normal /property:Configuration=Release /property:Platform=AnyCPU WinAuth.Cli/WinAuth.Cli.csproj
+          test -s WinAuth.Cli/bin/Release/winauth-cli.exe
+      - name: Run CLI tests
+        run: bash WinAuth.Cli/tests/cli-tests.sh
+      - name: Stage release files
+        run: |
+          mkdir -p artifacts/winauth-cli
+          cp WinAuth.Cli/bin/Release/winauth-cli.exe WinAuth.Cli/README.md artifacts/winauth-cli/
+          cat > artifacts/winauth-cli/winauth-cli <<'EOF'
+          #!/bin/sh
+          exec mono "$(dirname "$0")/winauth-cli.exe" "$@"
+          EOF
+          chmod +x artifacts/winauth-cli/winauth-cli
+          cd artifacts && zip -r winauth-cli-mono.zip winauth-cli
+      - uses: actions/upload-artifact@v5
+        with:
+          name: winauth-cli-mono
+          path: artifacts/winauth-cli-mono.zip
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/cli-v')
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: winauth-cli-mono
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" winauth-cli-mono.zip --generate-notes --verify-tag
