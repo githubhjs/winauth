@@ -14,9 +14,18 @@ namespace WinAuth.Cli {
     internal static string Code(Entry e) {
       long counter = e.Kind == "hotp" ? e.Counter : (long)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds / e.Period;
       byte[] msg = BitConverter.GetBytes(counter); if (BitConverter.IsLittleEndian) Array.Reverse(msg);
-      HMAC h = e.Algorithm == "SHA256" ? (HMAC)new HMACSHA256(Base32(e.Secret)) : e.Algorithm == "SHA512" ? new HMACSHA512(Base32(e.Secret)) : new HMACSHA1(Base32(e.Secret));
-      byte[] hash = h.ComputeHash(msg); int o = hash[hash.Length - 1] & 15; int binary = ((hash[o]&127)<<24)|(hash[o+1]<<16)|(hash[o+2]<<8)|hash[o+3];
+      byte[] hash;
+      using (HMAC h = CreateHmac(e.Algorithm, Base32(e.Secret))) {
+        hash = h.ComputeHash(msg);
+      }
+      int o = hash[hash.Length - 1] & 15; int binary = ((hash[o]&127)<<24)|(hash[o+1]<<16)|(hash[o+2]<<8)|hash[o+3];
       string code = (binary % (int)Math.Pow(10, e.Digits)).ToString(new string('0', e.Digits)); if (e.Kind == "hotp") e.Counter++; return code;
+    }
+    static HMAC CreateHmac(string algorithm, byte[] key) {
+      if (algorithm == "SHA256") return new HMACSHA256(key);
+      if (algorithm == "SHA512") return new HMACSHA512(key);
+      if (algorithm == "SHA1") return new HMACSHA1(key);
+      throw new ArgumentException("Unsupported HMAC algorithm: " + algorithm);
     }
   }
 }
