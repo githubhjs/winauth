@@ -1,6 +1,7 @@
 site_name: winauth-cli
 site_description: Cross-platform GUI-free WinAuth CLI for Mono on Linux, macOS, and Windows
 site_author: Chih-Hsueh "Josh" HUANG <huangjs@gmail.com>
+site_url: https://winauth-cli.readthedocs.io/en/latest/
 repo_url: https://github.com/githubhjs/winauth-running-on-all-OS.cli
 docs_dir: mkdocs-src
 copyright: Copyright &copy; Chih-Hsueh "Josh" HUANG &lt;huangjs@gmail.com&gt;
