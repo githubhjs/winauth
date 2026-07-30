@@ -11,12 +11,84 @@ nav:
   - CLI Usage: usage.md
   - Compiling: compiling.md
 
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: ja
+          name: 日本語
+          build: true
+        - locale: zh-TW
+          name: 繁體中文
+          build: true
+        - locale: zh
+          name: 简体中文
+          build: true
+        - locale: hi
+          name: हिन्दी
+          build: true
+        - locale: es
+          name: Español
+          build: true
+        - locale: fr
+          name: Français
+          build: true
+        - locale: ar
+          name: العربية
+          build: true
+        - locale: bn
+          name: বাংলা
+          build: true
+        - locale: pt
+          name: Português
+          build: true
+        - locale: ru
+          name: Русский
+          build: true
+        - locale: ur
+          name: اردو
+          build: true
+        - locale: id
+          name: Bahasa Indonesia
+          build: true
+        - locale: de
+          name: Deutsch
+          build: true
+        # sw (Swahili) and mr (Marathi) are NOT listed here: mkdocs-material's
+        # theme has no UI-string translation file for either locale, and
+        # mkdocs-static-i18n hard-crashes the build without one (no fallback
+        # option available). Translated content still exists in
+        # mkdocs-src/sw/ and mkdocs-src/mr/ for when this is resolved
+        # upstream, or if a workaround is added -- see STEAM_ASF_STATUS.md.
+        - locale: te
+          name: తెలుగు
+          build: true
+        - locale: tr
+          name: Türkçe
+          build: true
+        - locale: ta
+          name: தமிழ்
+          build: true
+        - locale: vi
+          name: Tiếng Việt
+          build: true
+        - locale: ko
+          name: 한국어
+          build: true
+        - locale: it
+          name: Italiano
+          build: true
+
 theme:
   name: material
   icon:
     repo: fontawesome/brands/github
   features:
-    - navigation.instant
     - navigation.tracking
     - content.code.copy
   palette:
