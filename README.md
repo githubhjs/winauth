@@ -33,6 +33,14 @@ On macOS with Homebrew:
 brew install mono
 ```
 
+## Documentation
+
+Full docs (quickstart, installation, CLI command reference, compiling): <https://winauth-cli.readthedocs.io/en/latest/>
+
+Available in English plus 18 translations via the language switcher: 日本語, 繁體中文, 简体中文, हिन्दी, Español, Français, العربية, বাংলা, Português, Русский, اردو, Bahasa Indonesia, Deutsch, తెలుగు, Türkçe, தமிழ், Tiếng Việt, 한국어, Italiano.
+
+Marathi (मराठी) and Swahili (Kiswahili) translations also exist in the repo (`mkdocs-src/mr/`, `mkdocs-src/sw/`) but aren't wired into the live site yet — mkdocs-material's theme currently has no UI-string translation for either locale, and the docs build tooling (mkdocs-static-i18n) has no fallback for that case. The content is ready; it just needs that upstream gap resolved (or a workaround) before it can go live.
+
 ## Original Windows Authenticator
 
 *WinAuth is a portable, open-source Authenticator for Windows that provides counter or time-based RFC 6238 authenticators and common implementations, such as the Google Authenticator. WinAuth can be used with many Bitcoin trading websites as well as games, supporting Battle.net (World of Warcraft, Hearthstone, Heroes of the Storm, Diablo), Guild Wars 2, Glyph (Rift and ArcheAge), WildStar, RuneScape, SWTOR and Steam.*
