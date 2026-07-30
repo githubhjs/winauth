@@ -37,9 +37,9 @@ brew install mono
 
 Full docs (quickstart, installation, CLI command reference, compiling): <https://winauth-cli.readthedocs.io/en/latest/>
 
-Available in English plus 18 translations via the language switcher: 日本語, 繁體中文, 简体中文, हिन्दी, Español, Français, العربية, বাংলা, Português, Русский, اردو, Bahasa Indonesia, Deutsch, తెలుగు, Türkçe, தமிழ், Tiếng Việt, 한국어, Italiano.
+Available in English plus 22 translations via the language switcher: 日本語, 繁體中文, 简体中文, हिन्दी, Español, Français, العربية, বাংলা, Português, Русский, اردو, Bahasa Indonesia, Deutsch, తెలుగు, Türkçe, தமிழ், Tiếng Việt, 한국어, Italiano, मराठी, Kiswahili, བོད་སྐད།, 客家話.
 
-Marathi (मराठी) and Swahili (Kiswahili) translations also exist in the repo (`mkdocs-src/mr/`, `mkdocs-src/sw/`) but aren't wired into the live site yet — mkdocs-material's theme currently has no UI-string translation for either locale, and the docs build tooling (mkdocs-static-i18n) has no fallback for that case. The content is ready; it just needs that upstream gap resolved (or a workaround) before it can go live.
+Marathi, Swahili, Tibetan, and Hakka have no built-in UI-translation file in mkdocs-material, so they're served via a custom theme override (`overrides/partials/languages/`) rather than upstream support. Hakka's real ISO 639-3 code (`hak`) isn't accepted by the docs build tooling's locale validator, so it's registered under the pseudo-tag `zh-Hakk` (not a real BCP47 code). Tibetan and Hakka translations are lower-confidence than the rest — native/fluent speaker review welcome.
 
 ## Original Windows Authenticator
 
