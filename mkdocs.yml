@@ -60,12 +60,26 @@ plugins:
         - locale: de
           name: Deutsch
           build: true
-        # sw (Swahili) and mr (Marathi) are NOT listed here: mkdocs-material's
-        # theme has no UI-string translation file for either locale, and
-        # mkdocs-static-i18n hard-crashes the build without one (no fallback
-        # option available). Translated content still exists in
-        # mkdocs-src/sw/ and mkdocs-src/mr/ for when this is resolved
-        # upstream, or if a workaround is added -- see STEAM_ASF_STATUS.md.
+        # mr, sw, bo, hak: mkdocs-material has no built-in UI-translation file
+        # for any of these four, and mkdocs-static-i18n hard-crashes the build
+        # without one (no fallback option available in the plugin itself).
+        # Fixed via theme.custom_dir (see overrides/partials/languages/*.html
+        # below) supplying the missing template file directly -- see
+        # STEAM_ASF_STATUS.md for the full writeup. bo and hak translations
+        # are lower-confidence (flagged inline in their override files and
+        # content) -- review by a native/fluent speaker recommended.
+        - locale: mr
+          name: मराठी
+          build: true
+        - locale: sw
+          name: Kiswahili
+          build: true
+        - locale: bo
+          name: བོད་སྐད།
+          build: true
+        - locale: zh-Hakk
+          name: 客家話
+          build: true
         - locale: te
           name: తెలుగు
           build: true
@@ -87,6 +101,7 @@ plugins:
 
 theme:
   name: material
+  custom_dir: overrides
   icon:
     repo: fontawesome/brands/github
   features:

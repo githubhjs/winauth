@@ -1,0 +1,72 @@
+{#-
+  Custom override: mkdocs-material has no built-in UI translation for
+  Hakka. ISO 639-3 assigns Hakka the code "hak" (matches hak.wikipedia.org's
+  own subdomain), but mkdocs-static-i18n's locale validator only accepts
+  ISO-639-1-shaped codes (2 letters, optionally with a 4-letter script or
+  2-letter region suffix) and hard-rejects any 3-letter primary code --
+  there is no valid way to register "hak" directly. "zh-Hakk" is used
+  instead as a project-specific pseudo-tag (language+script shape, format
+  passes validation) purely so this locale can exist in the build; it is
+  not a registered BCP47/IANA tag.
+  Hand-translated, matching the key set of the packaged language files as
+  of mkdocs-material 9.7.7.
+  NOTE: lower confidence than the mr/sw overrides in this repo -- written
+  Hakka has far less standardized technical/UI vocabulary than Mandarin
+  or Cantonese, and much of this leans close to standard written Chinese
+  for that reason (matching common practice on Hakka Wikipedia itself
+  for this kind of interface text). Review by a native/fluent speaker
+  recommended before treating this as polished.
+-#}
+{% macro t(key) %}{{ {
+  "language": "zh-Hakk",
+  "action.edit": "編輯這隻頁面",
+  "action.skip": "跳到內容",
+  "action.view": "看這隻頁面个原始碼",
+  "announce.dismiss": "毋好再顯示",
+  "blog.archive": "檔案",
+  "blog.categories": "分類",
+  "blog.categories.in": "在",
+  "blog.continue": "續下看",
+  "blog.draft": "草稿",
+  "blog.index": "轉去清單",
+  "blog.meta": "中繼資料",
+  "blog.references": "相關連結",
+  "clipboard.copy": "複製到剪貼簿",
+  "clipboard.copied": "已經複製到剪貼簿",
+  "consent.accept": "接受",
+  "consent.manage": "管理設定",
+  "consent.reject": "拒絕",
+  "footer": "頁尾",
+  "footer.next": "下一隻",
+  "footer.previous": "前一隻",
+  "header": "頁頭",
+  "meta.comments": "留言",
+  "meta.source": "來源",
+  "nav": "導覽",
+  "readtime.one": "1 分鐘睇了",
+  "readtime.other": "# 分鐘睇了",
+  "rss.created": "RSS 訂閱",
+  "rss.updated": "最新內容个 RSS 訂閱",
+  "search": "尋",
+  "search.config.lang": "hak",
+  "search.placeholder": "尋",
+  "search.share": "分享",
+  "search.reset": "清除",
+  "search.result.initializer": "開始尋",
+  "search.result.placeholder": "打字來開始尋",
+  "search.result.none": "無相關个文件",
+  "search.result.one": "1 隻相關个文件",
+  "search.result.other": "# 隻相關个文件",
+  "search.result.more.one": "這隻頁面還有 1 隻",
+  "search.result.more.other": "這隻頁面還有 # 隻",
+  "search.result.term.missing": "無",
+  "select.language": "選語言",
+  "select.version": "選版本",
+  "source": "去 repository",
+  "source.file.contributors": "貢獻个人",
+  "source.file.date.created": "建立日期",
+  "source.file.date.updated": "最後更新",
+  "tabs": "分頁",
+  "toc": "目錄",
+  "top": "轉到頂高"
+}[key] }}{% endmacro %}

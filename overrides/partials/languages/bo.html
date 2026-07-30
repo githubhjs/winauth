@@ -1,0 +1,61 @@
+{#-
+  Custom override: mkdocs-material has no built-in UI translation for
+  Tibetan (bo). Hand-translated, matching the key set of the packaged
+  language files as of mkdocs-material 9.7.7.
+  NOTE: lower confidence than the other custom overrides in this repo --
+  Tibetan has meaningfully less training-data coverage; review by a
+  native/fluent speaker recommended before treating this as polished.
+-#}
+{% macro t(key) %}{{ {
+  "language": "bo",
+  "action.edit": "ཤོག་ངོས་འདི་ཞུན་དག་བྱོས།",
+  "action.skip": "ནང་དོན་དུ་མཆོངས།",
+  "action.view": "ཤོག་ངོས་འདིའི་འབྱུང་ཁུངས་ལ་ལྟོས།",
+  "announce.dismiss": "སླར་ཡང་མི་སྟོན།",
+  "blog.archive": "ཡིག་མཛོད།",
+  "blog.categories": "རིགས།",
+  "blog.categories.in": "ནང་དུ།",
+  "blog.continue": "འཁྱོངས་ནས་ཀློག",
+  "blog.draft": "རྒྱབ་ཞིབ།",
+  "blog.index": "ཐོ་གཞུང་ལ་ལོག",
+  "blog.meta": "གནད་ཆ།",
+  "blog.references": "འབྲེལ་ཡོད།",
+  "clipboard.copy": "འཛར་ཐོའི་ནང་འདྲ་བཤུས་བྱོས།",
+  "clipboard.copied": "འཛར་ཐོའི་ནང་འདྲ་བཤུས་བྱས་ཟིན།",
+  "consent.accept": "ཁས་ལེན།",
+  "consent.manage": "སྒྲིག་འགོད་དོ་དག",
+  "consent.reject": "ངོས་མི་ལེན།",
+  "footer": "མཇུག་ཡིག",
+  "footer.next": "རྗེས་མ།",
+  "footer.previous": "སྔོན་མ།",
+  "header": "མགོ་ཡིག",
+  "meta.comments": "བསམ་ཚུལ།",
+  "meta.source": "འབྱུང་ཁུངས།",
+  "nav": "ལམ་སྟོན།",
+  "readtime.one": "སྐར་མ 1 ཀློག་དགོས།",
+  "readtime.other": "སྐར་མ # ཀློག་དགོས།",
+  "rss.created": "RSS ཐོན་རིགས།",
+  "rss.updated": "གསར་ཤོས་ཀྱི་ RSS ཐོན་རིགས།",
+  "search": "འཚོལ་ཞིབ།",
+  "search.config.lang": "bo",
+  "search.placeholder": "འཚོལ་ཞིབ།",
+  "search.share": "མཉམ་སྤྱོད།",
+  "search.reset": "བསུབ།",
+  "search.result.initializer": "འཚོལ་ཞིབ་འགོ་འཛུགས།",
+  "search.result.placeholder": "འཚོལ་ཞིབ་འགོ་འཛུགས་ཆེད་འབྲི།",
+  "search.result.none": "མཐུན་པའི་ཡིག་ཆ་མེད།",
+  "search.result.one": "མཐུན་པའི་ཡིག་ཆ 1",
+  "search.result.other": "མཐུན་པའི་ཡིག་ཆ #",
+  "search.result.more.one": "ཤོག་ངོས་འདིར་གཞན་པ 1",
+  "search.result.more.other": "ཤོག་ངོས་འདིར་གཞན་པ #",
+  "search.result.term.missing": "བརླག",
+  "select.language": "སྐད་ཡིག་འདེམས།",
+  "select.version": "པར་གཞི་འདེམས།",
+  "source": "མཛོད་ཁང་ལ་འགྲོ།",
+  "source.file.contributors": "འདེབས་མཁན།",
+  "source.file.date.created": "བཟོས་དུས།",
+  "source.file.date.updated": "མཐའ་མའི་གསར་བཅོས།",
+  "tabs": "ཨང་རྟགས།",
+  "toc": "དཀར་ཆག",
+  "top": "སྟེང་ལ་ལོག"
+}[key] }}{% endmacro %}
