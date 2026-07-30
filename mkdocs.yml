@@ -1,0 +1,13 @@
+site_name: winauth-cli
+site_description: Cross-platform GUI-free WinAuth CLI for Mono on Linux, macOS, and Windows
+repo_url: https://github.com/githubhjs/winauth-running-on-all-OS.cli
+docs_dir: mkdocs-src
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - CLI Usage: usage.md
+  - Compiling: compiling.md
+
+theme:
+  name: readthedocs
